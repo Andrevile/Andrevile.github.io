@@ -1,0 +1,31 @@
+name: PR_Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  checking:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: pnpm install
+        uses: ./.github/actions/pnpm-install
+
+      - name: Install Dependencies
+        run: |
+          rm package.json
+          pnpm add -D @commitlint/config-conventional
+
+      - name: Lint Commits
+        uses: wagoid/commitlint-github-action@v2
+
+      - name: Lint PR title
+        uses: JulienKode/pull-request-name-linter-action@v0.2.0
