@@ -13,7 +13,8 @@
 
   "rules": {
     "simple-import-sort/imports": "warn",
-    "simple-import-sort/exports": "error"
+    "simple-import-sort/exports": "error",
+    "import/no-cycle": ["warn", { "maxDepth": 1 }]
   }
 }
 
