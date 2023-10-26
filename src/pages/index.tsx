@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import Image from 'next/image';
-
-import { useThemeContext } from './_app';
+import { useTheme } from 'next-themes';
 
 export default function Home() {
-  const { toggleMode } = useThemeContext();
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
@@ -17,8 +16,11 @@ export default function Home() {
       <main>
         <div>
           <p>
-            <button onClick={toggleMode} style={{ width: '50px', height: ' 50px' }}>
-              버튼
+            <button
+              onClick={() => (theme == 'dark' ? setTheme('light') : setTheme('dark'))}
+              className="bottom-32 rounded-lg bg-gray-800 px-8 py-2 text-2xl text-white transition-all duration-100 hover:bg-gray-600 dark:bg-gray-50 dark:text-pink-800 dark:hover:bg-gray-300 md:text-4xl"
+            >
+              Toggle Mode
             </button>
             Get started by editing&nbsp;
             <code>src/pages/index.tsx</code>
