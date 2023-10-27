@@ -19,8 +19,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans],
-        spoqa: ['var(--font-spoqa)', ...fontFamily.sans],
+        sans: ['var(--font-pretendard)', ...fontFamily.sans],
         mono: ['var(--font-mono)', ...fontFamily.mono],
       },
     },

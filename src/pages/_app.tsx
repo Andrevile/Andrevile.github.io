@@ -3,9 +3,12 @@ import 'dayjs/locale/ko';
 
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
+
+import Fonts from '@/libs/common/components/html/style/Fonts';
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class">
+      <Fonts />
       <Component {...pageProps} />
     </ThemeProvider>
   );

@@ -22,6 +22,7 @@
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
-    }
+    },
+    { "files": ["Fonts.tsx"], "rules": { "react/no-unknown-property": "off" } }
   ]
 }
