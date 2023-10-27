@@ -12,11 +12,11 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    screens: {
-      lg: '1024px',
-      md: '768px',
-      sm: '320px',
-    },
+    // screens: {
+    //   lg: '1024px',
+    //   md: '768px',
+    //   sm: '320px',
+    // },
     extend: {
       fontFamily: {
         sans: ['var(--font-pretendard)', ...fontFamily.sans],

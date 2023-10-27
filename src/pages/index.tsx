@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { useTheme } from 'next-themes';
+
+import RootLayout from '@/libs/common/components/layout/RootLayout';
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -13,12 +14,22 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <RootLayout>
+        <button
+          onClick={() => (theme == 'dark' ? setTheme('light') : setTheme('dark'))}
+          className="bottom-32 rounded-lg bg-gray-800 px-8 py-2 text-2xl text-white transition-all duration-100 hover:bg-gray-600 dark:bg-gray-50 dark:text-pink-800 dark:hover:bg-gray-300 md:text-4xl"
+        >
+          Toggle Mode
+        </button>
+        dfsadasfsfd
+      </RootLayout>
+      {/*       
       <main>
         <div>
           <p>
             <button
               onClick={() => (theme == 'dark' ? setTheme('light') : setTheme('dark'))}
-              className="bottom-32 rounded-lg bg-gray-800 px-8 py-2 text-2xl text-white transition-all duration-100 hover:bg-gray-600 dark:bg-gray-50 dark:text-pink-800 dark:hover:bg-gray-300 md:text-4xl"
+              className="px-8 py-2 text-2xl text-white transition-all duration-100 bg-gray-800 rounded-lg bottom-32 hover:bg-gray-600 dark:bg-gray-50 dark:text-pink-800 dark:hover:bg-gray-300 md:text-4xl"
             >
               Toggle Mode
             </button>
@@ -85,7 +96,7 @@ export default function Home() {
             <p>Instantly deploy your Next.js site to a shareable URL with&nbsp;Vercel.</p>
           </a>
         </div>
-      </main>
+      </main> */}
     </>
   );
 }
