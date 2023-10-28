@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import Header from './Header';
+import Header from '../header/Header';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -15,7 +15,8 @@ const RootLayout = ({ children }: LayoutProps) => {
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="mx-auto max-w-3xl px-6 lg:max-w-6xl lg:px-8">
+
+      <div className="mx-auto max-w-3xl px-8 lg:max-w-6xl ">
         <Header />
         {children}
       </div>

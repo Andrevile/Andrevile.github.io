@@ -2,8 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#__next {
+  min-width: 100%;
+  min-height: 100%;
+}
+
 @layer base {
   body {
     @apply antialiased;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+  .bg-light {
+    @apply bg-stone-50;
+  }
+  .bg-dark {
+    @apply bg-stone-900;
+  }
+
+  .item-align-center {
+    @apply flex items-center justify-center;
   }
 }
