@@ -14,8 +14,8 @@ const IconButton = ({ src, alt, className, onClick, children }: React.PropsWithC
     onClick?.();
   };
   return (
-    <button className={cm(['relative aspect-square h-10 w-10', className])} onClick={handleClick}>
-      {src && <Image src={src} alt={alt ?? ''} fill={true} />}
+    <button className={cm(['btn', className])} onClick={handleClick}>
+      {src && <Image src={src} alt={alt ?? ''} fill={true} className="aspect-square" />}
       {children}
     </button>
   );

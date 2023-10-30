@@ -1,14 +1,18 @@
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-interface NavItemProps {
+import { cm } from '@/libs/utils/cm';
+
+interface NavItemProps extends React.HTMLAttributes<HTMLAnchorElement> {
   href: string;
 }
 
-export const NavItem = ({ href, children }: PropsWithChildren<NavItemProps>) => {
+export const NavItem = ({ href, className, children }: PropsWithChildren<NavItemProps>) => {
   return (
     <li>
-      <Link href={href}>{children}</Link>
+      <Link href={href} className={cm(className)}>
+        {children}
+      </Link>
     </li>
   );
 };

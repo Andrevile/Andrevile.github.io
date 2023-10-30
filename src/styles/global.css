@@ -7,6 +7,7 @@ body,
 #__next {
   min-width: 100%;
   min-height: 100%;
+  height: 100%;
 }
 
 @layer base {
@@ -16,6 +17,9 @@ body,
 }
 
 @layer components {
+  .btn {
+    @apply item-align-center relative;
+  }
 }
 
 @layer utilities {

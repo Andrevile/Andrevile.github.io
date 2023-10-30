@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Image from 'next/image';
 
 import { NAV_ICON_PATH } from '@/libs/contsants/svg';
@@ -13,19 +14,25 @@ const Header = () => {
     <header className="mb-8 flex w-full flex-nowrap justify-between  pb-2 pt-8">
       <Nav>
         <Nav.Item href="/">
-          <div className="relative mr-3 h-10 w-10">
+          <div className="relative mr-2 h-10 w-10">
             <Image
               src={NAV_ICON_PATH}
               fill={true}
-              className="aspect-square"
+              className="aspect-square h-10 w-10"
               alt="nav-icon"
               style={{ display: 'block' }}
             />
           </div>
         </Nav.Item>
-        <Nav.Item href="#">Post</Nav.Item>
-        <Nav.Item href="#">Second</Nav.Item>
-        <Nav.Item href="#">Third</Nav.Item>
+        <Nav.Item href="#" className="ss:block hidden ">
+          Post
+        </Nav.Item>
+        <Nav.Item href="#" className="ss:block hidden">
+          Second
+        </Nav.Item>
+        <Nav.Item href="#" className="ss:block hidden">
+          Third
+        </Nav.Item>
       </Nav>
       <div>
         <ThemeSwitch mode={theme} onClick={toggleTheme} />
