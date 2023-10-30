@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
-import Header from '../header/Header';
+import Footer from '../footer';
+import Header from '../header';
 
 interface LayoutProps {
   children?: React.ReactNode;
@@ -16,9 +17,10 @@ const RootLayout = ({ children }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="mx-auto max-w-3xl px-8 lg:max-w-6xl ">
+      <div className="relative mx-auto flex min-h-full flex-col">
         <Header />
-        {children}
+        <div className="pb-28">{children}</div>
+        <Footer />
       </div>
     </>
   );

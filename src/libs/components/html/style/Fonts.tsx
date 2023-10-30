@@ -1,5 +1,5 @@
-import { JetBrains_Mono as FontMono } from '@next/font/google';
-import localFont from '@next/font/local';
+import { JetBrains_Mono as FontMono } from 'next/font/google';
+import localFont from 'next/font/local';
 
 const fontPretendard = localFont({
   variable: '--font-pretendard',
