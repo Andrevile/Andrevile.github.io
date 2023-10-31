@@ -33,4 +33,15 @@ body,
   .item-align-center {
     @apply flex items-center justify-center;
   }
+
+  .no-scrollbar {
+    /* IE and Edge */
+    -ms-overflow-style: 'none';
+    /* Firefox */
+    scrollbar-width: 'none';
+  }
+  /* Safari and Chrome */
+  .no-scrollbar::-webkit-scrollbar {
+    display: 'none';
+  }
 }
