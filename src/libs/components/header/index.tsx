@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import Image from 'next/image';
 
-import { NAV_ICON_PATH } from '@/libs/contsants/svg';
+import { ORCA_ICON_PATH } from '@/libs/contsants/svg';
 import { useDarkMode } from '@/libs/hooks/useDarkMode';
 
-import ThemeSwitch from '../layout/ThemeSwitch';
+import ThemeSwitch from '../material/ThemeSwitch';
 import Nav from '../nav/Nav';
 
 const Header = () => {
@@ -16,7 +16,8 @@ const Header = () => {
         <Nav.Item href="/">
           <div className="relative mr-2 h-10 w-10">
             <Image
-              src={NAV_ICON_PATH}
+              src={ORCA_ICON_PATH}
+              // src={NAV_ICON_PATH}
               fill={true}
               className="aspect-square h-10 w-10"
               alt="nav-icon"
@@ -24,14 +25,14 @@ const Header = () => {
             />
           </div>
         </Nav.Item>
-        <Nav.Item href="#" className="ss:block hidden ">
+        <Nav.Item href="/post" className="hidden ss:block ">
           Post
         </Nav.Item>
-        <Nav.Item href="#" className="ss:block hidden">
-          Second
+        <Nav.Item href="/series" className="hidden ss:block">
+          Series
         </Nav.Item>
-        <Nav.Item href="#" className="ss:block hidden">
-          Third
+        <Nav.Item href="/tags" className="hidden ss:block">
+          Tags
         </Nav.Item>
       </Nav>
       <div>

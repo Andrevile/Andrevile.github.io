@@ -35,7 +35,7 @@ const Footer = () => {
             </Link>
           </li>
           <li>{`© ${thisYear} Orca blog. All rights reserved.`}</li>
-          <li className="text-neutral-400">Blog design was inspired by Ragnarok Online.</li>
+          {/* <li className="text-neutral-400">Blog design was inspired by Ragnarok Online.</li> */}
         </ul>
       </div>
     </footer>

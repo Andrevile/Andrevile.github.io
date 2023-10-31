@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 import RootLayout from '@/libs/components/layout/RootLayout';
 
-export default function Home() {
+export default function MainPage() {
   return (
     <>
       <Head>
