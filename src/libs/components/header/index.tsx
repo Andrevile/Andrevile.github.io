@@ -25,7 +25,7 @@ const Header = () => {
             />
           </div>
         </Nav.Item>
-        <Nav.Item href="/post" className="hidden ss:block ">
+        <Nav.Item href="/posts" className="hidden ss:block ">
           Post
         </Nav.Item>
         <Nav.Item href="/series" className="hidden ss:block">

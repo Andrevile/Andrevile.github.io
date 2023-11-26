@@ -1,8 +1,12 @@
+import { allPosts } from 'contentlayer/generated';
 import Head from 'next/head';
+import Link from 'next/link';
 
 import RootLayout from '@/libs/components/layout/RootLayout';
 
 export default function MainPage() {
+  console.log(allPosts);
+
   return (
     <>
       <Head>
@@ -12,6 +16,15 @@ export default function MainPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <RootLayout>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {allPosts.map((post) => (
+            <Link href={`/posts/${post._raw.flattenedPath}`} key={post._id}>
+              {post.title}
+            </Link>
+
+            // < key={post._id}>{post.title}</h2>
+          ))}
+        </div>
         {/* <div className="h-24 bg-blue-200">dfsafa</div>
         <div className="h-24 bg-blue-200">dfsafa</div>
         <div className="h-24 bg-blue-200">dfsafa</div>
