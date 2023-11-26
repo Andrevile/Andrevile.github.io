@@ -14,11 +14,12 @@
   "rules": {
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "error",
-    "import/no-cycle": ["warn", { "maxDepth": 1 }]
+    "import/no-cycle": ["warn", { "maxDepth": 1 }],
+    "no-unused-vars": "warn"
   },
   "overrides": [
     {
-      "files": ["**/*.config.js"],
+      "files": ["**/*.config.{js,ts}"],
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
