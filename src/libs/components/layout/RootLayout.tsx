@@ -17,7 +17,7 @@ const RootLayout = ({ children }: LayoutProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="relative mx-auto flex min-h-full flex-col">
+      <div className="relative mx-auto flex min-h-full max-w-5xl flex-col">
         <Header />
         <div className="pb-28">{children}</div>
         <Footer />

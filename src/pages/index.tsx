@@ -5,8 +5,6 @@ import Link from 'next/link';
 import RootLayout from '@/libs/components/layout/RootLayout';
 
 export default function MainPage() {
-  console.log(allPosts);
-
   return (
     <>
       <Head>

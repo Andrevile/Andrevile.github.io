@@ -1,5 +1,8 @@
 import { allPosts, Post } from 'contentlayer/generated';
 import { GetStaticProps } from 'next';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+
+import PostLayout from '@/libs/components/layout/PostLayout';
 
 export const getStaticPaths = async () => {
   return {
@@ -11,7 +14,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = (async ({ params }) => {
   let post = null;
   if (!params) {
-    return { props: { post: null } };
+    return { props: { post } };
   }
 
   const { slug } = params;
@@ -31,8 +34,12 @@ export const getStaticProps = (async ({ params }) => {
   };
 }) satisfies GetStaticProps<{ post?: Post | null }>;
 
-export default function PostPage() {
-  // console.log(slug);
-
-  return <div></div>;
+export default function PostPage({ post }: { post: Post }) {
+  const MDXComponent = useMDXComponent(post?.body.code || '');
+  console.log('test');
+  return (
+    <PostLayout>
+      <MDXComponent />
+    </PostLayout>
+  );
 }

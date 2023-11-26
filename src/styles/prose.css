@@ -1,0 +1,12 @@
+.prose a {
+  @apply break-words;
+}
+
+.light .prose pre[data-theme='dark'],
+.light .prose code[data-theme='dark'],
+.dark .prose pre[data-theme='light'],
+.dark .prose code[data-theme='light'],
+.light .prose div[data-rehype-pretty-code-title][data-theme='dark'],
+.dark .prose div[data-rehype-pretty-code-title][data-theme='light'] {
+  display: none;
+}
