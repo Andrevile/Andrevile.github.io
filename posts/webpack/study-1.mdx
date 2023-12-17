@@ -1,0 +1,171 @@
+---
+title: 'Webpack 스터디 1주차'
+date: 2022-12-04 17:00:11
+---
+
+## 📌 스터디를 하게 된 이유
+
+개인 프로젝트를 CRA(Create-React-App)을 통해, 세팅을 하고 진행을 하면서, 웹팩의 존재를 알게 되었고,CRA도 누군가 만들어 놓은 웹팩 설정이기 때문에, 추후에 프로젝트를 커스터마이징을 할 일이 생긴다면 웹팩을 다룰 줄 알아야 한다고 생각했다.
+![](https://images.velog.io/images/andrevile/post/b9751d05-db5d-4b5c-a353-f1ee3da5972a/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-03-30%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2012.00.50.png) 또한, 채용공고를 찾다보면, 웹팩 같은 모듈 번들러를 다룰 줄 아는 것을 자격 요건으로 하고 있다. 그래서, 인프런에서 프론트엔드 개발환경 스터디 모집글을 보고 참여하기로 마음먹고 스터디를 진행하게 되었다. 해당 스터디는, 스스로 프로젝트 환경을 구축할 수 있는 역량을 목표로 한다.
+앞으로 스터디를 진행하면서, 얻은 지식들을 기반으로 글을 작성 할 것이다.
+
+> **1주차 주제**
+> Webpack 공식문서 혹은 참고자료를 보면서 Webpack에 대해서 공부하고 정리하기
+
+## 📌 웹팩(Webpack)이란?
+
+> 웹팩이란, 최신 웹 애플리케이션에 사용되는 모듈 번들링 도구이다, 모듈 번들링이란 웹 애플리케이션을 구성하는 자원을 모두 각각의 모듈로 보고 이를 조합해서 병합된 하나의 결과물을 만드는 것이다.
+
+![](https://images.velog.io/images/andrevile/post/91800a70-a9db-4d10-8a8a-18affba7990a/image.png)
+위 그림에서 보이듯이, 웹팩은 웹 애플리케이션 개발시 필요한, HTML, Javascript, css, 이미지 같은 것들을 묶어준다.
+
+### 웹팩이 필요한 이유
+
+웹팩이 필요한 이유에는 크게 3가지 이유가 존재한다.
+
+>
+
+1. 파일 단위의 자바스크립트 모듈 관리의 필요성
+2. 웹 개발 작업 자동화 도구(Web Task Manager)
+3. 웹 애플리케이션의 빠른 로딩 속도와 높은 성능
+
+#### 파일 단위의 자바스크립트 모듈 관리의 필요성
+
+기존에는 자바스크립트 코드를 불러올 때, script 태그를 이용하여, 해당 자바스크립트 파일을 불러온다.
+
+```html
+<!-- index.html -->
+<html>
+  <head>
+    <title>Test</title>
+  </head>
+  <body></body>
+  <script src="./a.js"></script>
+  <script src="./b.js"></script>
+  <script>
+    console.log('test=', test);
+  </script>
+</html>
+```
+
+```js
+//a.js
+var test = 20;
+```
+
+```js
+//b.js
+var test = 30;
+```
+
+위 방식의 문제점은, 자바스크립트 변수나 함수같은 것들이 전역으로 유효범위가 정해지므로, 충돌이 일어나서 값이 오염되어 문제가 생길 수 있다.
+
+위 문제를 해결하기 위해서는 아래와 같은 방법이 있다.
+
+- IIFE(즉시 실행 함수)를 이용한다.
+- AMD, Common JS, UMD같은 모듈 시스템을 이용한다.
+- script type="module" 을 이용한다.
+
+주로 Common JS는 서버 사이드에서 사용되고, ES6에서 import export를 이용한 표준 모듈 시스템을 내놓았기 때문에, AMD,UMD는 쓰이지 않는 추세이다. 따라서 script태그에 type="module"을 이용할 수 있지만, 인터넷 익스플로러 같은 몇 브라우저는 이를 지원하지 않기 때문에, 웹팩을 이용하여 번들링을 하는 것이 좋다고 한다.
+
+#### 웹 개발 작업 자동화 도구(Web Task Manager)
+
+개발을 할 때, 용량을 줄이기 위해 HTML, CSS, JS, 이미지들을 압축하고, SASS같은 CSS 전처리기들을 CSS로 변환해주어야 한다. 하지만 이러한 일들을 변경사항이 생길 때마다, 코드 수정과 저장 후, 새로 고침같은 일들을 수동적으로 해주어야 했고, 이를 자동화 시키기 위해, Grunt 와 Gulp 같은 도구들이 나오게 되었다. 하지만 이러한 자동화 도구가 나온 뒤에도, 웹팩이 필요한 이유는, 해당 자동화 도구들의 기능에, 종속성 관리가 되지 않기 때문에, 웹팩을 이용해 패키지들 간에 종속성을 관리하면서, 모듈들을 최적화하고, 빌드 속도가 빠르기 때문에 웹팩을 사용한다.
+
+> **자동화 도구 + 최적화 + 빠른 속도 = 웹팩**<br/>
+> 웹팩 공식문서에서는 코드 스플리팅과, 캐싱 기법을 통한 최적화와 빌드 속도를 향상시키는 기법을 소개하고 있다. 후에, 프로젝트 세팅을 직접 해보면서, 이부분을 적용해보고 포스팅을 할 생각이다.
+
+#### 웹 애플리케이션의 빠른 로딩 속도와 높은 성능
+
+그 전에는, 많은 수의 파일들을 브라우저에서 서버로 요청을 하므로, 웹 사이트의 로딩 속도가 비교적 느렸다.
+
+브라우저마다, 서버에 보낼 수 있는 HTTP 요청 숫자는 한정되어 있기 때문이다. 예를 들어 크롬, 사파리, 파이어폭스 브라우저들은 최대 6회 이다. 따라서, 해당 요청 숫자보다 많은 요청을 보내게 되면, 먼저 했던 요청이 끝난 후에 가능하다.
+
+|     브라우저      | 최대 연결횟수 |
+| :---------------: | :-----------: |
+|   익스플로러 7    |       2       |
+| 익스플로러 8 ~ 9  |       6       |
+| 익스플로러 10, 11 |     8,13      |
+|       크롬        |       6       |
+|      사파리       |       6       |
+|      오페라       |       6       |
+|    파이어폭스     |       6       |
+
+- 웹팩 적용 전
+  <img
+    src="https://images.velog.io/images/andrevile/post/14e02965-086e-4364-a314-8ff2be60b065/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-03-30%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2012.08.15.png"
+    width="100%"
+  />
+  > 크롬에서는 최대 요청수가 6이므로 최대 6번의 요청을 완료한 뒤에 다음 자원들을 요청하는 것을 알 수 있으며, 이로 인해 완료
+  시간이 비교적 길다는 것을 알 수 있다.
+- 웹팩 적용 후
+  <img src="https://images.velog.io/images/andrevile/post/a927afd1-1854-45e4-82b9-510c010fffac/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-03-30%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2012.01.07.png" />
+  > 웹팩을 적용하고 나서는 css 파일과 js 파일들이 bundle.js 로 묶여서, 요청하는 횟수 자체가 14번에서 6번으로 줄어든 것을
+  알 수 있고, 이로 인해 완료 시간 또한 매우 단축된 것을 알 수 있다.
+
+## 📌 웹팩의 주요 속성들
+
+### Entry와 Output
+
+```js
+const path = require('path');
+
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'my-first-webpack.bundle.js',
+  },
+};
+```
+
+웹팩은 하나의 시작점으로부터, 의존성에 따라서, 필요한 모듈들을 묶어서 결과물을 만들어낸다.
+위 코드는 해당 경로의 file.js라는 진입점(entry)을 통해 특정 경로안에, my-first-webpack.bundle.js(output)라는 결과물을 만들어내는 설정이다.
+
+### Loader
+
+이미지나, 자바스크립트, CSS, 폰트까지도 import 구문을 사용하면 자바스크립트 코드 안으로 가져올수 있다.웹팩은 모든 파일을 모듈로 여기기 때문에, 위와같이 import를 이용해 가져올 수 있는 것이며, 이게 Loader 덕분이다.
+
+```js
+module.exports = {
+  module: {
+    rules: [
+      { test: /\.css$/, use: 'css-loader' },
+      { test: /\.ts$/, use: 'ts-loader' },
+    ],
+  },
+};
+```
+
+위의 코드는 css-loader를 통해 css를 로딩 할 수 있게 해주고, ts-loader를 통해 typescript를 javascript로 변환해주는 설정을 해주는 것이다.
+
+### Plugins
+
+플러그인은 번들된 결과물을 어떻게 처리할지 도와주는 역할을 한다.
+
+```js
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack'); //to access built-in plugins
+
+module.exports = {
+  module: {
+    rules: [{ test: /\.txt$/, use: 'raw-loader' }],
+  },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+};
+```
+
+위의 코드에서, html-webpack-plugin은 html 파일에 빌드한 결과물을 자동으로 주입해주는 역할을 하기 때문에, 자주 쓰이며, 이와 같이 빌드 자체 과정에 관여하게 된다.
+
+### 📖 Mode
+웹팩에는 mode 속성을 통해 development,production 모드를 정해서 각 모드에 맞는 최적화 옵션들을 사용 할 수 있다. none 옵션도 있지만, 잘 쓰이지는 않는 것 같다.
+
+## 📌 마무리
+1주차에는 각자 조사해온 내용을 바탕으로 발표를 하고 정보를 취합하였으며, 왜 웹팩이 쓰이는지와, 웹팩의 주요 키워드가 주를 이루었던 것 같다. 이를 바탕으로 해당 글을 썼으며, 2주차의 주제는 직접 웹팩의 주요속성인, loader, plugin, entry, output같은 속성으로 간단한 프로젝트 세팅을 해보는 것이다.
+
+## References
+
+https://webpack.js.org/concepts/
+https://joshua1988.github.io/webpack-guide/
+https://jeonghwan-kim.github.io/series/2019/12/10/frontend-dev-env-webpack-basic.html
+https://www.youtube.com/watch?v=WQue1AN93YU

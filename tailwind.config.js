@@ -12,9 +12,6 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    screens: {
-      // sm: '480px',
-    },
     extend: {
       fontFamily: {
         sans: ['var(--font-pretendard)', ...fontFamily.sans],
