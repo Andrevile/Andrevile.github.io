@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 
 import RootLayout from '@/libs/components/layout/RootLayout';
+import { LandingPageSection } from '@/libs/components/material/LandingPageSection';
 
 export default function MainPage() {
   return (
@@ -14,35 +15,41 @@ export default function MainPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <RootLayout>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {allPosts.map((post) => (
-            <Link href={`/posts/${post._raw.flattenedPath}`} key={post._id}>
-              {post.title}
-            </Link>
-
-            // < key={post._id}>{post.title}</h2>
-          ))}
-        </div>
-        {/* <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div> */}
-        {/* <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div>
-        <div className="h-24 bg-blue-200">dfsafa</div> */}
-        <div className="h-24 bg-red-200">dfsafa</div>
+        <main>
+          <section className="mb-4">
+            <h1 className="mb-3 text-3xl font-extrabold sm:text-5xl">Orca.Andrevile</h1>
+            <p>
+              Frontend Engineer at <span className="font-bold">KakaoStyle.</span>
+            </p>
+          </section>
+          <LandingPageSection
+            sectionTitle="Post"
+            items={allPosts}
+            renderItem={(post) => (
+              <Link href={`/posts/${post._raw.flattenedPath}`} key={post._id}>
+                {post.title}
+              </Link>
+            )}
+          />
+          <LandingPageSection
+            sectionTitle="Series"
+            items={allPosts}
+            renderItem={(post) => (
+              <Link href={`/posts/${post._raw.flattenedPath}`} key={post._id}>
+                {post.title}
+              </Link>
+            )}
+          />
+          <LandingPageSection
+            sectionTitle="Tags"
+            items={allPosts}
+            renderItem={(post) => (
+              <Link href={`/posts/${post._raw.flattenedPath}`} key={post._id}>
+                {post.title}
+              </Link>
+            )}
+          />
+        </main>
       </RootLayout>
     </>
   );
